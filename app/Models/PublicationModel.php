@@ -18,4 +18,17 @@ class PublicationModel extends Model
             ->where(['id' => $id]) 
             ->first();
     }
+
+    public function show()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('publication'); // Tabla principal de publicaciones
+        $builder->select('publication.*, user.name AS user_name'); // Selecciona datos de ambas tablas, renombrando 'name' de user para evitar conflictos
+        $builder->join('user', 'user.id = publication.user'); // Relación entre 'publication.user' y 'user.id'
+        $builder->orderBy('publication.id', 'DESC'); // Orden descendente por ID
+        return $builder->get()->getResultArray(); // Devuelve los resultados como un arreglo asociativo
+    }
+
+
+
 }

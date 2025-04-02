@@ -17,3 +17,7 @@ $routes->post('publication/edit/(:num)', 'Publication::edit/$1'); // Envía los 
 
 // Ruta para el método delete, elimina una publicación
 $routes->get('publication/delete/(:num)', 'Publication::delete/$1'); // Elimina una publicación específica
+
+// Nueva ruta para el método login y logout en el controlador User
+$routes->post('user/login', 'User::login');
+$routes->get('user/logout', 'User::logout');

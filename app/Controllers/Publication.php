@@ -7,7 +7,8 @@ class Publication extends BaseController
     public function index()
     {
         $model = new PublicationModel();
-        $data['posts'] = $model->get();
+        $data['posts'] = $model->show();
+        
         echo view('header');
         echo view('publication/all', $data);
         echo view('footer');
@@ -17,10 +18,13 @@ class Publication extends BaseController
     public function add()
     {
         $model = new PublicationModel();
+
+        // Obtener el ID del usuario desde la sesión
+        $userId = session()->user; 
     
         $model->save([
             'content' => $this->request->getPost('content'),
-            'user' => 1
+            'user' => $userId
         ]);
     
         return redirect()->to(base_url() . '/publication');

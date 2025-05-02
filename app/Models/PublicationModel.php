@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PublicationModel extends Model 
 {
     protected $table = 'publication'; 
-    protected $allowedFields = ['content', 'user']; 
+    protected $allowedFields = ['content', 'user', 'image']; // Agregar 'image'
 
     public function get($id = false)
     {
